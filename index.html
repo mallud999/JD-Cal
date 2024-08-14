@@ -35,6 +35,10 @@
             padding-bottom: 10px;
         }
 
+        .input-group, .output-group {
+            margin-bottom: 20px;
+        }
+
         .row {
             display: flex;
             flex-direction: row;
@@ -60,7 +64,7 @@
             flex: 1;
             font-weight: bold;
             color: #333;
-            text-align: left; /* Align left */
+            text-align: left;
             margin-right: 10px;
         }
 
@@ -143,119 +147,153 @@
     <div class="container">
         <h1>Construction Project Details - JD</h1>
 
-        <div class="row">
-            <label><i class="fas fa-ruler-combined"></i> Acres</label>
-            <div class="input-wrapper">
-                <button onclick="changeValue('acres', -1)">-</button>
-                <input type="text" id="acres" maxlength="12" value="1.00" oninput="validateAndFormat(this)" title="Enter the total land area in acres">
-                <button onclick="changeValue('acres', 1)">+</button>
+        <div class="input-group">
+            <div class="row">
+                <label><i class="fas fa-ruler-combined"></i> Acres</label>
+                <div class="input-wrapper">
+                    <button onclick="changeValue('acres', -1)">-</button>
+                    <input type="text" id="acres" maxlength="12" value="1.00" oninput="validateAndFormat(this)" title="Enter the total land area in acres">
+                    <button onclick="changeValue('acres', 1)">+</button>
+                </div>
             </div>
-            <div class="output-title">Construction Sft</div>
-            <div class="output" id="constructionSft">0</div>
+
+            <div class="row">
+                <label><i class="fas fa-building"></i> FAR</label>
+                <div class="input-wrapper">
+                    <button onclick="changeValue('far', -0.1)">-</button>
+                    <input type="text" id="far" maxlength="12" value="2.75" oninput="validateAndFormat(this)" title="Enter the Floor Area Ratio">
+                    <button onclick="changeValue('far', 0.1)">+</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <label><i class="fas fa-user-tie"></i> Owner Share</label>
+                <div class="input-wrapper">
+                    <button onclick="changeValue('ownerShare', -1)">-</button>
+                    <input type="text" id="ownerShare" maxlength="12" value="45.00" oninput="validateAndFormat(this)" title="Enter the percentage share of the owner">
+                    <button onclick="changeValue('ownerShare', 1)">+</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <label><i class="fas fa-landmark"></i> Land Cost/Acre</label>
+                <div class="input-wrapper">
+                    <button onclick="changeValue('landCostAcre', -100000)">-</button>
+                    <input type="text" id="landCostAcre" maxlength="12" value="0.00" oninput="validateAndFormat(this)" title="Enter the cost of land per acre">
+                    <button onclick="changeValue('landCostAcre', 100000)">+</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <label><i class="fas fa-money-check-alt"></i> Refundable Advance</label>
+                <div class="input-wrapper">
+                    <button onclick="changeValue('refundableAdvance', -100000)">-</button>
+                    <input type="text" id="refundableAdvance" maxlength="12" value="15600000.00" oninput="validateAndFormat(this)" title="Enter the refundable advance amount">
+                    <button onclick="changeValue('refundableAdvance', 100000)">+</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <label><i class="fas fa-hand-holding-usd"></i> Goodwill</label>
+                <div class="input-wrapper">
+                    <button onclick="changeValue('goodwill', -100000)">-</button>
+                    <input type="text" id="goodwill" maxlength="12" value="10000000.00" oninput="validateAndFormat(this)" title="Enter the goodwill amount">
+                    <button onclick="changeValue('goodwill', 100000)">+</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <label><i class="fas fa-hard-hat"></i> Construction Cost/Sft</label>
+                <div class="input-wrapper">
+                    <button onclick="changeValue('constructionCostSft', -100)">-</button>
+                    <input type="text" id="constructionCostSft" maxlength="12" value="3200.00" oninput="validateAndFormat(this)" title="Enter the construction cost per square foot">
+                    <button onclick="changeValue('constructionCostSft', 100)">+</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <label><i class="fas fa-tools"></i> Site Development Cost</label>
+                <div class="input-wrapper">
+                    <button onclick="changeValue('siteDevelopmentCost', -100000)">-</button>
+                    <input type="text" id="siteDevelopmentCost" maxlength="12" value="15600000.00" oninput="validateAndFormat(this)" title="Enter the cost for site development">
+                    <button onclick="changeValue('siteDevelopmentCost', 100000)">+</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <label><i class="fas fa-percent"></i> Interest</label>
+                <div class="input-wrapper">
+                    <button onclick="changeValue('interest', -0.1)">-</button>
+                    <input type="text" id="interest" maxlength="12" value="0.00" oninput="validateAndFormat(this)" title="Enter the interest rate">
+                    <button onclick="changeValue('interest', 0.1)">+</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <label><i class="fas fa-tag"></i> Sale Price/Sqft</label>
+                <div class="input-wrapper">
+                    <button onclick="changeValue('salePriceSqft', -100)">-</button>
+                    <input type="text" id="salePriceSqft" maxlength="12" value="8000.00" oninput="validateAndFormat(this)" title="Enter the sale price per square foot">
+                    <button onclick="changeValue('salePriceSqft', 100)">+</button>
+                </div>
+            </div>
         </div>
 
-        <div class="row">
-            <label><i class="fas fa-building"></i> FAR</label>
-            <div class="input-wrapper">
-                <button onclick="changeValue('far', -0.1)">-</button>
-                <input type="text" id="far" maxlength="12" value="2.75" oninput="validateAndFormat(this)" title="Enter the Floor Area Ratio">
-                <button onclick="changeValue('far', 0.1)">+</button>
+        <div class="output-group">
+            <div class="row">
+                <div class="output-title">Construction Sft</div>
+                <div class="output" id="constructionSft">0</div>
             </div>
-            <div class="output-title">Developer Share</div>
-            <div class="output" id="developerShare">0%</div>
-        </div>
 
-        <div class="row">
-            <label><i class="fas fa-user-tie"></i> Owner Share</label>
-            <div class="input-wrapper">
-                <button onclick="changeValue('ownerShare', -1)">-</button>
-                <input type="text" id="ownerShare" maxlength="12" value="45.00" oninput="validateAndFormat(this)" title="Enter the percentage share of the owner">
-                <button onclick="changeValue('ownerShare', 1)">+</button>
+            <div class="row">
+                <div class="output-title">Developer Share</div>
+                <div class="output" id="developerShare">0%</</div>
             </div>
-            <div class="output-title">Owner Sqft</div>
-            <div class="output" id="ownerSqft">0</div>
-        </div>
 
-        <div class="row">
-            <label><i class="fas fa-landmark"></i> Land Cost/Acre</label>
-            <div class="input-wrapper">
-                <button onclick="changeValue('landCostAcre', -100000)">-</button>
-                <input type="text" id="landCostAcre" maxlength="12" value="0.00" oninput="validateAndFormat(this)" title="Enter the cost of land per acre">
-                <button onclick="changeValue('landCostAcre', 100000)">+</button>
+            <div class="row">
+                <div class="output-title">Owner Sqft</div>
+                <div class="output" id="ownerSqft">0</div>
             </div>
-            <div class="output-title">Developer Sqft</div>
-            <div class="output" id="developerSqft">0</div>
-        </div>
 
-        <div class="row">
-            <label><i class="fas fa-money-check-alt"></i> Refundable Advance</label>
-            <div class="input-wrapper">
-                <button onclick="changeValue('refundableAdvance', -100000)">-</button>
-                <input type="text" id="refundableAdvance" maxlength="12" value="15600000.00" oninput="validateAndFormat(this)" title="Enter the refundable advance amount">
-                <button onclick="changeValue('refundableAdvance', 100000)">+</button>
+            <div class="row">
+                <div class="output-title">Developer Sqft</div>
+                <div class="output" id="developerSqft">0</div>
             </div>
-            <div class="output-title">Construction Cost</div>
-            <div class="output" id="constructionCost">0</div>
-        </div>
 
-        <div class="row">
-            <label><i class="fas fa-hand-holding-usd"></i> Goodwill</label>
-            <div class="input-wrapper">
-                <button onclick="changeValue('goodwill', -100000)">-</button>
-                <input type="text" id="goodwill" maxlength="12" value="10000000.00" oninput="validateAndFormat(this)" title="Enter the goodwill amount">
-                <button onclick="changeValue('goodwill', 100000)">+</button>
+            <div class="row">
+                <div class="output-title">Construction Cost</div>
+                <div class="output" id="constructionCost">0</div>
             </div>
-            <div class="output-title">Total Expenses</div>
-            <div class="output" id="totalExpenses">0</div>
-        </div>
 
-        <div class="row">
-            <label><i class="fas fa-hard-hat"></i> Construction Cost/Sft</label>
-            <div class="input-wrapper">
-                <button onclick="changeValue('constructionCostSft', -100)">-</button>
-                <input type="text" id="constructionCostSft" maxlength="12" value="3200.00" oninput="validateAndFormat(this)" title="Enter the construction cost per square foot">
-                <button onclick="changeValue('constructionCostSft', 100)">+</button>
+            <div class="row">
+                <div class="output-title">Total Expenses</div>
+                <div class="output" id="totalExpenses">0</div>
             </div>
-            <div class="output-title">Total Investment</div>
-            <div class="output" id="totalInvestment">0</div>
-        </div>
 
-        <div class="row">
-            <label><i class="fas fa-tools"></i> Site Development Cost</label>
-            <div class="input-wrapper">
-                <button onclick="changeValue('siteDevelopmentCost', -100000)">-</button>
-                <input type="text" id="siteDevelopmentCost" maxlength="12" value="15600000.00" oninput="validateAndFormat(this)" title="Enter the cost for site development">
-                <button onclick="changeValue('siteDevelopmentCost', 100000)">+</button>
+            <div class="row">
+                <div class="output-title">Total Investment</div>
+                <div class="output" id="totalInvestment">0</div>
             </div>
-            <div class="output-title">Development Cost/Sft</div>
-            <div class="output" id="developmentCostSft">0</div>
-        </div>
 
-        <div class="row">
-            <label><i class="fas fa-percent"></i> Interest</label>
-            <div class="input-wrapper">
-                <button onclick="changeValue('interest', -0.1)">-</button>
-                <input type="text" id="interest" maxlength="12" value="0.00" oninput="validateAndFormat(this)" title="Enter the interest rate">
-                <button onclick="changeValue('interest', 0.1)">+</button>
+            <div class="row">
+                <div class="output-title">Development Cost/Sft</div>
+                <div class="output" id="developmentCostSft">0</div>
             </div>
-            <div class="output-title">Land Owner Realization</div>
-            <div class="output" id="landOwnerRealization">0</div>
-        </div>
 
-        <div class="row">
-            <label><i class="fas fa-tag"></i> Sale Price/Sqft</label>
-            <div class="input-wrapper">
-                <button onclick="changeValue('salePriceSqft', -100)">-</button>
-                <input type="text" id="salePriceSqft" maxlength="12" value="8000.00" oninput="validateAndFormat(this)" title="Enter the sale price per square foot">
-                <button onclick="changeValue('salePriceSqft', 100)">+</button>
+            <div class="row">
+                <div class="output-title">Land Owner Realization</div>
+                <div class="output" id="landOwnerRealization">0</div>
             </div>
-            <div class="output-title">Net Land Owner Realization</div>
-            <div class="output" id="netLandOwnerRealization">0</div>
-        </div>
 
-        <div class="row">
-            <div class="output-title">Developer Realization</div> <!-- Adjusted to match other fields -->
-            <div class="output" id="developerRealization">0</div>
+            <div class="row">
+                <div class="output-title">Net Land Owner Realization</div>
+                <div class="output" id="netLandOwnerRealization">0</div>
+            </div>
+
+            <div class="row">
+                <div class="output-title">Developer Realization</div>
+                <div class="output" id="developerRealization">0</div>
+            </div>
         </div>
 
     </div>

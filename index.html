@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Project Details - JD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 90%;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0047AB;
+            margin-bottom: 20px;
+            font-size: 28px;
+            border-bottom: 2px solid #0047AB;
+            padding-bottom: 10px;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .row label {
+            flex: 1;
+            font-weight: bold;
+        }
+
+        .row .input-wrapper {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .row .output-title {
+            flex: 1;
+            font-weight: bold;
+            color: #333;
+            text-align: left; /* Align left */
+            margin-right: 10px;
+        }
+
+        .row .output {
+            flex: 1;
+            text-align: right;
+            font-weight: bold;
+            color: #28a745;
+            font-size: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            max-width: 120px;
+            text-align: right;
+        }
+
+        input:focus {
+            border-color: #053656;
+            box-shadow: inset 0px 2px 4px rgba(5, 54, 86, 0.2);
+            outline: none;
+        }
+
+        input:hover {
+            border-color: #053656;
+        }
+
+        .input-wrapper button {
+            background-color: #053656;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+
+        .input-wrapper button:hover {
+            background-color: #032a44;
+        }
+
+        @media screen and (max-width: 600px) {
+            .row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .row label, .row .input-wrapper, .row .output-title, .row .output {
+                width: 100%;
+                text-align: left;
+                margin-bottom: 10px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            input {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .output-title, .output {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Construction Project Details - JD</h1>
+
+        <div class="row">
+            <label><i class="fas fa-ruler-combined"></i> Acres</label>
+            <div class="input-wrapper">
+                <button onclick="changeValue('acres', -1)">-</button>
+                <input type="text" id="acres" maxlength="12" value="1.00" oninput="validateAndFormat(this)" title="Enter the total land area in acres">
+                <button onclick="changeValue('acres', 1)">+</button>
+            </div>
+            <div class="output-title">Construction Sft</div>
+            <div class="output" id="constructionSft">0</div>
+        </div>
+
+        <div class="row">
+            <label><i class="fas fa-building"></i> FAR</label>
+            <div class="input-wrapper">
+                <button onclick="changeValue('far', -0.1)">-</button>
+                <input type="text" id="far" maxlength="12" value="2.75" oninput="validateAndFormat(this)" title="Enter the Floor Area Ratio">
+                <button onclick="changeValue('far', 0.1)">+</button>
+            </div>
+            <div class="output-title">Developer Share</div>
+            <div class="output" id="developerShare">0%</div>
+        </div>
+
+        <div class="row">
+            <label><i class="fas fa-user-tie"></i> Owner Share</label>
+            <div class="input-wrapper">
+                <button onclick="changeValue('ownerShare', -1)">-</button>
+                <input type="text" id="ownerShare" maxlength="12" value="45.00" oninput="validateAndFormat(this)" title="Enter the percentage share of the owner">
+                <button onclick="changeValue('ownerShare', 1)">+</button>
+            </div>
+            <div class="output-title">Owner Sqft</div>
+            <div class="output" id="ownerSqft">0</div>
+        </div>
+
+        <div class="row">
+            <label><i class="fas fa-landmark"></i> Land Cost/Acre</label>
+            <div class="input-wrapper">
+                <button onclick="changeValue('landCostAcre', -100000)">-</button>
+                <input type="text" id="landCostAcre" maxlength="12" value="0.00" oninput="validateAndFormat(this)" title="Enter the cost of land per acre">
+                <button onclick="changeValue('landCostAcre', 100000)">+</button>
+            </div>
+            <div class="output-title">Developer Sqft</div>
+            <div class="output" id="developerSqft">0</div>
+        </div>
+
+        <div class="row">
+            <label><i class="fas fa-money-check-alt"></i> Refundable Advance</label>
+            <div class="input-wrapper">
+                <button onclick="changeValue('refundableAdvance', -100000)">-</button>
+                <input type="text" id="refundableAdvance" maxlength="12" value="15600000.00" oninput="validateAndFormat(this)" title="Enter the refundable advance amount">
+                <button onclick="changeValue('refundableAdvance', 100000)">+</button>
+            </div>
+            <div class="output-title">Construction Cost</div>
+            <div class="output" id="constructionCost">0</div>
+        </div>
+
+        <div class="row">
+            <label><i class="fas fa-hand-holding-usd"></i> Goodwill</label>
+            <div class="input-wrapper">
+                <button onclick="changeValue('goodwill', -100000)">-</button>
+                <input type="text" id="goodwill" maxlength="12" value="10000000.00" oninput="validateAndFormat(this)" title="Enter the goodwill amount">
+                <button onclick="changeValue('goodwill', 100000)">+</button>
+            </div>
+            <div class="output-title">Total Expenses</div>
+            <div class="output" id="totalExpenses">0</div>
+        </div>
+
+        <div class="row">
+            <label><i class="fas fa-hard-hat"></i> Construction Cost/Sft</label>
+            <div class="input-wrapper">
+                <button onclick="changeValue('constructionCostSft', -100)">-</button>
+                <input type="text" id="constructionCostSft" maxlength="12" value="3200.00" oninput="validateAndFormat(this)" title="Enter the construction cost per square foot">
+                <button onclick="changeValue('constructionCostSft', 100)">+</button>
+            </div>
+            <div class="output-title">Total Investment</div>
+            <div class="output" id="totalInvestment">0</div>
+        </div>
+
+        <div class="row">
+            <label><i class="fas fa-tools"></i> Site Development Cost</label>
+            <div class="input-wrapper">
+                <button onclick="changeValue('siteDevelopmentCost', -100000)">-</button>
+                <input type="text" id="siteDevelopmentCost" maxlength="12" value="15600000.00" oninput="validateAndFormat(this)" title="Enter the cost for site development">
+                <button onclick="changeValue('siteDevelopmentCost', 100000)">+</button>
+            </div>
+            <div class="output-title">Development Cost/Sft</div>
+            <div class="output" id="developmentCostSft">0</div>
+        </div>
+
+        <div class="row">
+            <label><i class="fas fa-percent"></i> Interest</label>
+            <div class="input-wrapper">
+                <button onclick="changeValue('interest', -0.1)">-</button>
+                <input type="text" id="interest" maxlength="12" value="0.00" oninput="validateAndFormat(this)" title="Enter the interest rate">
+                <button onclick="changeValue('interest', 0.1)">+</button>
+            </div>
+            <div class="output-title">Land Owner Realization</div>
+            <div class="output" id="landOwnerRealization">0</div>
+        </div>
+
+        <div class="row">
+            <label><i class="fas fa-tag"></i> Sale Price/Sqft</label>
+            <div class="input-wrapper">
+                <button onclick="changeValue('salePriceSqft', -100)">-</button>
+                <input type="text" id="salePriceSqft" maxlength="12" value="8000.00" oninput="validateAndFormat(this)" title="Enter the sale price per square foot">
+                <button onclick="changeValue('salePriceSqft', 100)">+</button>
+            </div>
+            <div class="output-title">Net Land Owner Realization</div>
+            <div class="output" id="netLandOwnerRealization">0</div>
+        </div>
+
+        <div class="row">
+            <div class="output-title">Developer Realization</div> <!-- Adjusted to match other fields -->
+            <div class="output" id="developerRealization">0</div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        &copy; 2024 Construction Estimator. All rights reserved.
+    </div>
+
+    <script>
+        function formatAndCalculate(element) {
+            const value = element.value.replace(/,/g, '');
+            const formattedValue = formatNumber(parseFloat(value).toFixed(2));
+            element.value = formattedValue;
+
+            calculateOutputs();
+        }
+
+        function formatNumber(num) {
+            if (isNaN(num)) return '';
+            return num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function changeValue(id, increment) {
+            const element = document.getElementById(id);
+            const value = parseFloat(element.value.replace(/,/g, '')) || 0;
+            const newValue = (value + increment).toFixed(2);
+            element.value = formatNumber(newValue);
+            calculateOutputs();
+        }
+
+        function validateAndFormat(element) {
+            const value = element.value.replace(/,/g, '');
+            if (isNaN(value) || value < 0) {
+                document.getElementById(`${element.id}-error`).innerText = "Please enter a valid positive number.";
+                element.classList.add("error-border");
+            } else {
+                document.getElementById(`${element.id}-error`).innerText = "";
+                element.classList.remove("error-border");
+                const formattedValue = formatNumber(parseFloat(value).toFixed(2));
+                element.value = formattedValue;
+            }
+
+            calculateOutputs();
+        }
+
+        function calculateOutputs() {
+            const acres = parseFloat(document.getElementById('acres').value.replace(/,/g, '')) || 0;
+            const far = parseFloat(document.getElementById('far').value.replace(/,/g, '')) || 0;
+            const ownerShare = (parseFloat(document.getElementById('ownerShare').value.replace(/,/g, '')) || 0) / 100;
+            const constructionCostSft = parseFloat(document.getElementById('constructionCostSft').value.replace(/,/g, '')) || 0;
+            const siteDevelopmentCost = parseFloat(document.getElementById('siteDevelopmentCost').value.replace(/,/g, '')) || 0;
+            const refundableAdvance = parseFloat(document.getElementById('refundableAdvance').value.replace(/,/g, '')) || 0;
+            const goodwill = parseFloat(document.getElementById('goodwill').value.replace(/,/g, '')) || 0;
+            const salePriceSqft = parseFloat(document.getElementById('salePriceSqft').value.replace(/,/g, '')) || 0;
+
+            const constructionSft = acres * far * 43560;
+            const developerShare = 1 - ownerShare;
+            const ownerSqft = constructionSft * ownerShare;
+            const developerSqft = constructionSft * developerShare;
+            const constructionCost = constructionSft * constructionCostSft;
+            const totalExpenses = constructionCost + siteDevelopmentCost;
+            const totalInvestment = totalExpenses + refundableAdvance + goodwill;
+            const developmentCostSft = totalInvestment / constructionSft;
+            const landOwnerRealization = ownerSqft * salePriceSqft;
+            const netLandOwnerRealization = landOwnerRealization + (goodwill || 0);
+            const developerRealization = developerSqft * salePriceSqft;
+
+            document.getElementById('constructionSft').innerText = formatNumber(constructionSft);
+            document.getElementById('developerShare').innerText = (developerShare * 100).toFixed(2) + '%';
+            document.getElementById('ownerSqft').innerText = formatNumber(ownerSqft);
+            document.getElementById('developerSqft').innerText = formatNumber(developerSqft);
+            document.getElementById('constructionCost').innerText = formatNumber(constructionCost);
+            document.getElementById('totalExpenses').innerText = formatNumber(totalExpenses);
+            document.getElementById('totalInvestment').innerText = formatNumber(totalInvestment);
+            document.getElementById('developmentCostSft').innerText = formatNumber(developmentCostSft);
+            document.getElementById('landOwnerRealization').innerText = formatNumber(landOwnerRealization);
+            document.getElementById('netLandOwnerRealization').innerText = formatNumber(netLandOwnerRealization);
+            document.getElementById('developerRealization').innerText = formatNumber(developerRealization);
+        }
+    </script>
+</body>
+
+</html>
